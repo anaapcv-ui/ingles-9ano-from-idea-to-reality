@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prancheta de Invenções · Inglês 9º · Kit de Estudos</title>
+<style>
+  :root{--prancha:#0e1a24;--prancha2:#132433;--aco:#24384a;--aco2:#34506a;--ciano:#38bdf8;--ambar:#f5a524;--verde:#3ddc84;--vermelho:#ef4444;--texto:#e6eef5;--cinza:#93a6b8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 520px at 50% -10%,#10304a,#0e1a24 60%),var(--prancha);color:var(--texto);line-height:1.6;padding-bottom:60px;
+    background-image:radial-gradient(1100px 520px at 50% -10%,#10304a,#0e1a24 60%),
+      linear-gradient(rgba(56,189,248,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(56,189,248,.05) 1px,transparent 1px);
+    background-size:auto,26px 26px,26px 26px}
+  header{background:linear-gradient(120deg,#0b2740,#0e3a54 60%,#0b2740);padding:30px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--ciano)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#bfe6ff;text-transform:uppercase}
+  header h1{font-size:1.8rem;margin:8px 0 4px}
+  header p{color:#d4ecfb;font-size:.95rem}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .intro{background:var(--prancha2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .intro h2{color:var(--ambar);font-size:1.1rem;margin-bottom:8px}
+  .ordem{text-align:center;font-weight:bold;margin:10px 0;font-size:.95rem;color:#fff}
+  .selo-pais{display:none;background:#14382a;border:1px solid var(--verde);color:#8fe0b4;border-radius:10px;padding:10px 14px;margin:12px 0;text-align:center;font-weight:bold}
+  .selo-pais.show{display:block}
+  .selo-pais button{margin-left:10px;background:transparent;border:1px solid var(--verde);color:#8fe0b4;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit}
+  .trilha{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+  .card{position:relative;background:var(--prancha2);border:1px solid var(--aco);border-radius:16px;padding:16px;text-decoration:none;color:var(--texto);display:block;transition:transform .15s,box-shadow .15s}
+  .card .passo{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza)}
+  .card .emoji{font-size:2rem;margin:4px 0}
+  .card h3{font-size:1.05rem;margin-bottom:6px}
+  .card p{font-size:.85rem;color:#c3d2df}
+  .card .estado{margin-top:10px;font-size:.8rem;font-weight:bold;padding:6px 8px;border-radius:8px}
+  .card.aberto{border-color:var(--ciano)}
+  .card.aberto:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(56,189,248,.25)}
+  .card.aberto .estado{background:#102a3e;color:var(--ciano)}
+  .card.novo{animation:brilho 1.6s ease-in-out 3;border-color:var(--ambar)}
+  @keyframes brilho{0%,100%{box-shadow:0 0 0 rgba(245,165,36,0)}50%{box-shadow:0 0 22px rgba(245,165,36,.6)}}
+  .card.novo .estado{background:#3a2e06;color:var(--ambar)}
+  .card.feito{border-color:var(--verde)}
+  .card.feito .estado{background:#0e2b1f;color:#8fe0b4}
+  .card.trancado{opacity:.55;filter:grayscale(.6);pointer-events:none;cursor:not-allowed}
+  .card.trancado .estado{background:#1a2733;color:var(--cinza)}
+  .card .cadeado{position:absolute;top:10px;right:12px;font-size:1.3rem}
+  .como{background:var(--prancha2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .como h2{color:var(--ciano);font-size:1.1rem;margin-bottom:8px}
+  .como ol{margin-left:20px}
+  .como li{margin-bottom:6px}
+  .cai{background:#102a3e;border-left:4px solid var(--ciano);border-radius:0 12px 12px 0;padding:14px 16px;margin:16px 0;font-size:.93rem}
+  .cai h2{color:var(--ciano);font-size:1.05rem;margin-bottom:6px}
+  .rel{background:var(--prancha2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin:16px 0}
+  .rel h2{color:var(--ciano);font-size:1.1rem;margin-bottom:8px}
+  .rel input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b1722;color:var(--texto);font-size:1rem;width:170px;text-transform:uppercase}
+  .rel button{background:var(--ciano);color:#042033;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px;cursor:pointer;font-family:inherit}
+  .rel .out{margin-top:12px;font-size:.9rem}
+  .rel .bloco{background:#0b1722;border:1px solid var(--aco);border-radius:10px;padding:10px 12px;margin:8px 0}
+  .rel .bloco b{color:var(--ambar)}
+  .rel .liberar{margin-top:10px;background:var(--verde);color:#04231a}
+  .rel .perigo{background:#3a1414;color:#ffc9c9;border:1px solid var(--vermelho)}
+  .dica{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.9rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:16px 0}
+  .dica b{color:#7a4a00}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--prancha2);border:1px solid var(--ciano);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--ciano);color:#042033;border:none;border-radius:8px;padding:9px 16px;font-weight:bold;cursor:pointer;font-family:inherit}
+  .modal button.sec{background:transparent;border:1px solid var(--aco2);color:var(--texto);margin-left:8px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Kit de Estudos · Colégio Coração Feliz</div>
+  <h1>🛠️ Prancheta de Invenções</h1>
+  <p>Inglês · 9º ano · Unit 7 "From Idea to Reality" · Prova 20/10</p>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <h2>👋 Bem-vindo(a) ao estúdio de invenções!</h2>
+    <p>Aqui o estudo é a sua bancada: você leva uma <b>ideia</b> até virar <b>produto</b> e aprende a <b>relatar o que a equipe disse</b> (reported speech). Tudo foi feito a partir da Unit 7 do seu livro de inglês. As frases em inglês têm <b>áudio 🔊</b> na Leitura e no Resumo.</p>
+    <div class="ordem">Trilha: 📖 Leitura Guiada → 🎯 Quiz → 🗺️ Resumo → 📝 Simulado</div>
+    <p style="text-align:center;font-size:.9rem;color:var(--cinza)">Os materiais abrem <b>um por vez, na ordem</b>. Conclua um para destravar o próximo.</p>
+  </div>
+
+  <div class="selo-pais" id="selo-pais">🔓 Trilha liberada pelos pais <button onclick="trancar()">Trancar de novo</button></div>
+
+  <div class="trilha" id="trilha"></div>
+
+  <div class="como">
+    <h2>📌 Como usar este material</h2>
+    <ol>
+      <li><b>Leitura Guiada</b> (8 estações): leia, ouça o inglês no 🔊 e <b>escreva</b> as respostas com as suas palavras. Conferir todas as estações e responder a autoavaliação destrava o Quiz.</li>
+      <li><b>Quiz</b> (15 questões): teste o que entendeu enquanto está fresco. Enviar o Quiz destrava o Resumo.</li>
+      <li><b>Resumo</b>: feche as dúvidas que o Quiz mostrou (tabelas e cards com áudio). Ler até o fim e clicar em "Li o resumo até o fim" destrava o Simulado.</li>
+      <li><b>Simulado</b> (25 questões no estilo da prova — múltipla escolha, somatório e números romanos): valendo, como se fosse a prova de verdade.</li>
+      <li>Depois do Simulado, <b>tudo fica aberto</b> para revisar quantas vezes quiser até a prova.</li>
+    </ol>
+    <p style="margin-top:8px;font-size:.88rem;color:var(--cinza)">Seu progresso fica salvo automaticamente no navegador deste aparelho. Dá para exportar/importar em cada material.</p>
+  </div>
+
+  <div class="cai">
+    <h2>🎯 O que cai na prova (20/10)</h2>
+    <p><b>Developing Products:</b> expressões verbo + substantivo (research an idea, develop a concept, design a prototype, test out the product, improve the design, solve any problems, manufacture the gadget, develop the product, give a demonstration, do market research, analyze the results, invent characters) e a <b>ordem dos 8 passos</b>.</p>
+    <p><b>Reported Speech:</b> relatar sem aspas, say × tell, recuo dos tempos (present→past, past→past perfect, present perfect→past perfect, progressive), modais e futuro (will→would, can→could, have to→had to, going to), mudança de pronomes/possessivos e reporting verbs (said, told, asked, complained, suggested, promised, admitted).</p>
+    <p><b>Time Expressions</b> no discurso indireto e <b>Reported Questions</b> (wh- com mudança de ordem e sim/não com if/whether).</p>
+  </div>
+
+  <div class="dica">📌 <b>Dica para os pais:</b> o progresso é do navegador de cada aparelho. Se a Leitura foi feita no tablet e o Quiz vai ser no computador, use 📥 Exportar / 📤 Importar em cada material — ou libere a trilha com o código da família (abaixo).</div>
+
+  <div class="rel">
+    <h2>📊 Relatório para os pais</h2>
+    <p>Digite um dos códigos: <b>MED-…</b> (do Quiz), <b>SIM-…</b> (do Simulado) ou o código fixo da família <b>PAIS-77</b> (mostra tudo e permite liberar a trilha).</p>
+    <div style="margin-top:8px"><input id="cod-in" placeholder="PAIS-77"><button onclick="verRelatorio()">🔓 Ver relatório</button></div>
+    <div class="out" id="rel-out"></div>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🛠️ Good luck na prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button id="modal-ok">Ok</button><button class="sec" id="modal-cancel" onclick="fecharModal()" style="display:none">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='ideia_realidade';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖', desc:'8 estações com o conteúdo explicado, áudio em inglês e 3 perguntas em cada, para escrever com as suas palavras.'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯', desc:'15 questões objetivas para testar o que você entendeu. Código MED e gabarito comentado.'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️', desc:'Tabelas de reported speech, time expressions e reported questions + cards de vocabulário com áudio.'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝', desc:'25 questões no estilo da prova: múltipla escolha, somatório e números romanos. Código SIM.'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function gravarJSON(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function dados(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; return lerJSON(e.chave); }
+function etapaConcluida(id){ var d=dados(id); return !!(d&&d.concluido); }
+function podeAbrir(idx){ if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function fmt(iso){ if(!iso) return ''; var d=new Date(iso); return d.toLocaleDateString('pt-BR')+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
+
+function faltaTexto(idx){
+  var ant=TRILHA[idx-1]; var d=dados(ant.id)||{};
+  if(ant.id==='leitura'){ var p=d.progresso||{conferidos:0,total:8,chkPendentes:0}; var f=p.total-p.conferidos; return f>0? 'Destrava quando você conferir as '+p.total+' estações da Leitura Guiada (faltam '+f+').' : 'Destrava quando você responder a autoavaliação da Leitura Guiada ('+p.chkPendentes+' ponto(s)).'; }
+  if(ant.id==='quiz'){ var n=d.resp?Object.keys(d.resp).length:0; return 'Destrava quando você enviar o Quiz'+(n?' ('+n+' de 15 respondidas)':'')+'.'; }
+  if(ant.id==='resumo'){ var r=Math.round(d.rolagemMax||0); return 'Destrava quando você ler o Resumo até o fim e clicar em "Li o resumo até o fim"'+(r?' (rolagem: '+r+'%)':'')+'.'; }
+  return 'Destrava quando você concluir '+ant.nome+'.';
+}
+function renderTrilha(){
+  var c=document.getElementById('trilha'); var h='';
+  TRILHA.forEach(function(t,idx){
+    var feito=etapaConcluida(t.id), aberto=podeAbrir(idx);
+    var cls='card', estado='', cadeado='';
+    if(feito){ cls+=' feito'; estado='✅ Concluído'+(dados(t.id).concluidoEm?' · '+fmt(dados(t.id).concluidoEm):''); }
+    else if(aberto){ var novo=(idx>0 && etapaConcluida(TRILHA[idx-1].id) && !trilhaLiberada()); cls+=novo?' novo':' aberto'; estado=novo?'✨ Novo destravado — pode começar!':(idx===0?'▶️ Comece por aqui':'▶️ Aberto'); }
+    else { cls+=' trancado'; cadeado='<span class="cadeado">🔒</span>'; estado='🔒 '+faltaTexto(idx); }
+    h+='<a class="'+cls+'" href="'+(aberto?t.arquivo:'#')+'" '+(aberto?'':'tabindex="-1" aria-disabled="true"')+'>'+cadeado+'<div class="passo">Passo '+(idx+1)+'</div><div class="emoji">'+t.emoji+'</div><h3>'+t.nome+'</h3><p>'+t.desc+'</p><div class="estado">'+estado+'</div></a>';
+  });
+  c.innerHTML=h;
+  document.getElementById('selo-pais').classList.toggle('show', trilhaLiberada());
+}
+
+/* ====== RELATÓRIO PARA OS PAIS ====== */
+function relLeitura(){
+  var e=dados('leitura'); if(!e||!e.blocos) return '<p>Ainda não há registro da Leitura Guiada.</p>';
+  var conf=0,red=0,nao=0,tot=8;
+  Object.keys(e.blocos).forEach(function(i){ var b=e.blocos[i]; if(b.conferido)conf++; if(b.perguntas)Object.keys(b.perguntas).forEach(function(j){ var p=b.perguntas[j]; if(p.red)red++; if(p.chk)Object.keys(p.chk).forEach(function(k){ if(p.chk[k]==='nao')nao++; }); }); });
+  return '<b>Estações conferidas:</b> '+conf+' de '+tot+'.<br><b>Respostas muito parecidas com o texto:</b> '+red+'.<br><b>Pontos marcados como "Não" na autoavaliação:</b> '+nao+'.';
+}
+function relQuiz(){ var e=dados('quiz'); if(!e) return '<p>Ainda não há registro do Quiz.</p>'; if(!e.enviado) return '<p>Quiz iniciado ('+Object.keys(e.resp||{}).length+' de 15 respondidas), ainda não enviado.</p>'; return '<b>Quiz enviado.</b> Acertos: '+e.acertos+' de 15. Código: '+e.codigo+'.'; }
+function relResumo(){ var e=dados('resumo'); if(!e) return '<p>Ainda não há registro do Resumo.</p>'; return '<b>Rolagem máxima:</b> '+Math.round(e.rolagemMax||0)+'%. '+(e.concluido?'<b>Lido até o fim</b> em '+fmt(e.concluidoEm)+'.':'Ainda não confirmou a leitura até o fim.'); }
+function relSimulado(){ var e=dados('simulado'); if(!e) return '<p>Ainda não há registro do Simulado.</p>'; if(!e.enviado) return '<p>Simulado iniciado, ainda não enviado.</p>'; return '<b>Simulado enviado.</b> Acertos: '+e.acertos+' de '+(e.objetivas||25)+' questões. Código: '+e.codigo+'.'; }
+function relTrilha(){
+  var h='<ul style="margin-left:18px">';
+  TRILHA.forEach(function(t){ var d=dados(t.id); h+='<li>'+t.emoji+' '+t.nome+': '+((d&&d.concluido)?'<span style="color:#8fe0b4">concluído em '+fmt(d.concluidoEm)+'</span>':'<span style="color:#ffb3b3">não concluído</span>')+'</li>'; });
+  h+='</ul>'; var tr=lerJSON(KIT+'_trilha_v1'); if(tr&&tr.liberadoPelosPais) h+='<p>🔓 Trilha liberada pelos pais em '+fmt(tr.liberadoEm)+'.</p>'; else if(tr&&tr.liberadoEm) h+='<p>Trilha foi liberada pelos pais em '+fmt(tr.liberadoEm)+' e trancada de novo em '+fmt(tr.trancadoEm)+'.</p>';
+  return h;
+}
+function verRelatorio(){
+  var v=document.getElementById('cod-in').value.trim().toUpperCase(); var out=document.getElementById('rel-out');
+  var q=dados('quiz')||{}, s=dados('simulado')||{};
+  var tudo=(v==='PAIS-77'), okQ=(q.codigo&&v===q.codigo), okS=(s.codigo&&v===s.codigo);
+  if(!tudo&&!okQ&&!okS){ out.innerHTML='<span style="color:#ffb3b3">Código não reconhecido.</span>'; return; }
+  var h='';
+  if(tudo||okQ) h+='<div class="bloco"><b>📖 Leitura Guiada</b><br>'+relLeitura()+'</div><div class="bloco"><b>🎯 Quiz</b><br>'+relQuiz()+'</div>';
+  if(tudo) h+='<div class="bloco"><b>🗺️ Resumo</b><br>'+relResumo()+'</div>';
+  if(tudo||okS) h+='<div class="bloco"><b>📝 Simulado</b><br>'+relSimulado()+'</div>';
+  if(tudo){ h+='<div class="bloco"><b>🛤️ Trilha</b>'+relTrilha()+'</div>';
+    h+= trilhaLiberada() ? '<button class="liberar" onclick="trancar()">🔒 Trancar a trilha de novo</button>' : '<button class="liberar" onclick="liberar()">🔓 Liberar todos os materiais</button>';
+    h+=' <button class="perigo" onclick="pedirZerarKit()">🗑️ Zerar o kit inteiro</button>';
+  }
+  out.innerHTML=h;
+}
+function liberar(){ var t=lerJSON(KIT+'_trilha_v1')||{}; t.liberadoPelosPais=true; t.liberadoEm=new Date().toISOString(); gravarJSON(KIT+'_trilha_v1',t); renderTrilha(); verRelatorio(); }
+function trancar(){ var t=lerJSON(KIT+'_trilha_v1')||{}; t.liberadoPelosPais=false; t.trancadoEm=new Date().toISOString(); gravarJSON(KIT+'_trilha_v1',t); renderTrilha(); if(document.getElementById('rel-out').innerHTML) verRelatorio(); }
+function pedirZerarKit(){ mostrarModal('Apagar TODO o progresso do kit (leitura, quiz, resumo, simulado e trilha)? A criança volta ao começo, com só a Leitura Guiada aberta.',true,function(){ TRILHA.forEach(function(t){ try{localStorage.removeItem(t.chave);}catch(e){} }); try{localStorage.removeItem(KIT+'_trilha_v1');}catch(e){} renderTrilha(); document.getElementById('rel-out').innerHTML='<span style="color:#8fe0b4">Kit zerado.</span>'; }); }
+function mostrarModal(txt,confirmar,fn){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; var ok=document.getElementById('modal-ok'); ok.textContent=confirmar?'Sim, apagar':'Ok'; ok.onclick=function(){ if(fn) fn(); fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+renderTrilha();
+</script>
+</body>
+</html>

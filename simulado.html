@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado · Prancheta de Invenções · Inglês 9º</title>
+<style>
+  :root{--prancha:#0e1a24;--prancha2:#132433;--aco:#24384a;--aco2:#34506a;--ciano:#38bdf8;--ambar:#f5a524;--verde:#3ddc84;--vermelho:#ef4444;--texto:#e6eef5;--cinza:#93a6b8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#0b1a3a,#0e1a24 60%),var(--prancha);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0b1a3a,#10264f);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:6px solid var(--vermelho)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#c9d6f5;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#dbe4fa;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--prancha2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--vermelho);color:#fff;font-weight:bold}
+  .intro{background:var(--prancha2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:#ff8a89;font-size:1.1rem;margin-bottom:8px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--prancha2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--prancha);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .codigo{background:linear-gradient(120deg,#14382a,#1b5038);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe0b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:var(--vermelho);width:0;transition:width .3s}
+  .q{background:var(--prancha2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:#ff8a89;font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tipo{float:right;font-size:.7rem;color:#fff;border-radius:10px;padding:2px 8px;background:#2a3a5a}
+  .q .tipo.som{background:#5a2a7a}.q .tipo.rom{background:#1f5a4a}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600;clear:both}
+  .q h3 em{color:var(--ciano);font-style:normal;background:#102a3e;padding:1px 6px;border-radius:5px}
+  .afirm{background:#0b1722;border-left:3px solid var(--aco2);padding:8px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.93rem}
+  .afirm.ok{border-left-color:var(--verde)}.afirm.no{border-left-color:#777;color:#9fb0bf}
+  .alt{display:block;background:#0b1722;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:#ff8a89}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:#ff8a89;background:#2a1620}
+  .alt.certa{border-color:var(--verde);background:#0e2b1f}
+  .alt.errada{border-color:#4a5a68;background:#141c24;color:#9fb0bf}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1414}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#0b1722;border-left:3px solid var(--ambar);display:none}
+  .exp.show{display:block}
+  .soma input{width:110px;padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b1722;color:var(--texto);font-size:1.05rem;text-align:center}
+  .soma .lab{font-size:.85rem;color:var(--cinza);margin-left:8px}
+  .enviar{width:100%;background:var(--vermelho);color:#fff;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#1b2d3d;color:#5f7488;cursor:not-allowed}
+  .gab{background:var(--prancha2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b1722;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--ciano);color:#042033;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  .fim{background:linear-gradient(120deg,#102a1f,#14382a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim a{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(5,10,16,.96);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--prancha2);border:1px solid var(--ciano);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--ciano);color:#042033;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Prancheta de Invenções · Inglês 9º ano · CCF</div>
+  <h1>📝 Simulado · Dia do Lançamento</h1>
+  <p>25 questões no estilo da prova · múltipla escolha, somatório e números romanos · Código SIM</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a href="resumo.html">🗺️ Resumo</a>
+    <a class="on" href="simulado.html">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>📝 Valendo!</h2>
+    <p>Faça como se fosse a prova: <b>25 questões</b>, todas obrigatórias. Nas de <b>somatório</b>, some os números das afirmativas corretas e escreva o total. Nas de <b>números romanos</b>, escolha a alternativa que diz quais afirmativas estão certas. Depois de enviar, as respostas travam e sai o código <b>SIM</b>. (Este material não tem áudio.)</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar simulado (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código SIM que apareceu no topo.<br>
+    <input id="gab-in" placeholder="SIM-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="fim" id="fim" style="display:none">
+    <h3>🏁 Trilha completa!</h3>
+    <p>Você percorreu os quatro materiais na ordem. Agora tudo fica aberto para revisar quantas vezes quiser até a prova.</p>
+    <a href="index.html">🏠 Voltar ao início</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🛠️ Good luck!</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Simulado, leia o Resumo até o fim.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal" style="background:rgba(0,0,0,.75)">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS ====== */
+var KIT='ideia_realidade';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function checarTrava(){
+  if(podeAbrir('simulado')) return true;
+  var txt='Para abrir o Simulado, leia o Resumo até o fim e clique em "Li o resumo até o fim".';
+  if(!etapaConcluida('quiz')) txt='Para abrir o Simulado, envie o Quiz e leia o Resumo até o fim.';
+  if(!etapaConcluida('leitura')) txt='Para abrir o Simulado, conclua a Leitura Guiada, envie o Quiz e leia o Resumo até o fim.';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(6px)';
+  return false;
+}
+
+/* ====== QUESTÕES (Unit 7) ====== */
+var Q=[
+ {tipo:"mc",tema:"Developing Products",p:"'analisar os resultados' em inglês é:",alts:[
+  {id:"a",t:"analyze the results",ok:true,e:"analyze the results = analisar os resultados."},
+  {id:"b",t:"solve any problems",e:"= resolver os problemas."},
+  {id:"c",t:"do market research",e:"= fazer pesquisa de mercado."},
+  {id:"d",t:"improve the design",e:"= melhorar o design."}]},
+ {tipo:"mc",tema:"Developing Products",p:"'fabricar o produto' em inglês é:",alts:[
+  {id:"a",t:"manufacture a product",ok:true,e:"manufacture a product = fabricar um produto."},
+  {id:"b",t:"design a prototype",e:"= projetar um protótipo."},
+  {id:"c",t:"develop a concept",e:"= desenvolver um conceito."},
+  {id:"d",t:"invent characters",e:"= inventar personagens."}]},
+ {tipo:"mc",tema:"Developing Products",p:"'inventar personagens' em inglês é:",alts:[
+  {id:"a",t:"invent characters",ok:true,e:"invent characters = inventar personagens."},
+  {id:"b",t:"test out the product",e:"= testar o produto."},
+  {id:"c",t:"give a demonstration",e:"= fazer uma demonstração."},
+  {id:"d",t:"research an idea",e:"= pesquisar uma ideia."}]},
+ {tipo:"mc",tema:"Developing Products",p:"Logo depois de 'design a prototype', o próximo passo é:",alts:[
+  {id:"a",t:"test out the product",ok:true,e:"A ordem: design a prototype → test out the product → improve the design…"},
+  {id:"b",t:"research an idea",e:"Pesquisar a ideia é o 1º passo."},
+  {id:"c",t:"develop a concept",e:"Desenvolver o conceito vem antes do protótipo."},
+  {id:"d",t:"manufacture the gadget",e:"Fabricar é um dos últimos passos."}]},
+ {tipo:"mc",tema:"Reported Speech",p:"Direct: 'I like coffee.' (she said) →",alts:[
+  {id:"a",t:"She said she liked coffee.",ok:true,e:"present (like) → past (liked)."},
+  {id:"b",t:"She said she likes coffee.",e:"Faltou o recuo: 'likes' vira 'liked'."},
+  {id:"c",t:"She said she had liked coffee.",e:"Past perfect seria o recuo de um passado, não de um presente."},
+  {id:"d",t:"She said she would like coffee.",e:"'would' é o recuo de 'will'."}]},
+ {tipo:"mc",tema:"Reported Speech",p:"Direct: 'I saw the film.' (he said) →",alts:[
+  {id:"a",t:"He said he had seen the film.",ok:true,e:"simple past (saw) → past perfect (had seen)."},
+  {id:"b",t:"He said he saw the film.",e:"Faltou recuar: 'saw' vira 'had seen'."},
+  {id:"c",t:"He said he has seen the film.",e:"Present perfect não é o recuo do simple past."},
+  {id:"d",t:"He said he would see the film.",e:"'would see' é o recuo de 'will see'."}]},
+ {tipo:"mc",tema:"Reported Speech",p:"Direct: 'I am studying.' (she said) →",alts:[
+  {id:"a",t:"She said she was studying.",ok:true,e:"present progressive → past progressive."},
+  {id:"b",t:"She said she is studying.",e:"Faltou recuar: 'is studying' vira 'was studying'."},
+  {id:"c",t:"She said she had studied.",e:"Isso é past perfect, não o recuo do present progressive."},
+  {id:"d",t:"She said she studies.",e:"Mudou o sentido; o certo é 'was studying'."}]},
+ {tipo:"mc",tema:"Reported Speech",p:"Direct: 'I have to go.' (he said) →",alts:[
+  {id:"a",t:"He said he had to go.",ok:true,e:"have to → had to."},
+  {id:"b",t:"He said he has to go.",e:"Faltou recuar: 'has to' vira 'had to'."},
+  {id:"c",t:"He said he would go.",e:"Mudou o sentido de obrigação; o certo é 'had to'."},
+  {id:"d",t:"He said he had gone.",e:"'had gone' é past perfect de 'go', não o recuo de 'have to'."}]},
+ {tipo:"mc",tema:"Reported Speech",p:"Direct: 'I will win.' (she said) →",alts:[
+  {id:"a",t:"She said she would win.",ok:true,e:"will → would."},
+  {id:"b",t:"She said she will win.",e:"'will' precisa recuar para 'would'."},
+  {id:"c",t:"She said she won.",e:"Mudou o tempo; o certo é 'would win'."},
+  {id:"d",t:"She said she had won.",e:"'had won' não é o recuo de 'will win'."}]},
+ {tipo:"mc",tema:"Reported Speech",p:"Direct: 'I can drive.' (he said) →",alts:[
+  {id:"a",t:"He said he could drive.",ok:true,e:"can → could."},
+  {id:"b",t:"He said he can drive.",e:"'can' precisa recuar para 'could'."},
+  {id:"c",t:"He said he drove.",e:"Mudou o sentido; o recuo de 'can' é 'could'."},
+  {id:"d",t:"He said he would drive.",e:"'would' é o recuo de 'will', não de 'can'."}]},
+ {tipo:"mc",tema:"say × tell",p:"Complete: <em>She ___ me she was busy.</em>",alts:[
+  {id:"a",t:"told",ok:true,e:"'tell' pede a pessoa depois (told ME)."},
+  {id:"b",t:"said",e:"'say' não leva pessoa; seria 'said that she was busy'."},
+  {id:"c",t:"asked",e:"'asked' é para perguntas."},
+  {id:"d",t:"spoke",e:"'spoke' não entra nessa estrutura."}]},
+ {tipo:"mc",tema:"Reporting Verbs",p:"'prometeu' em inglês é:",alts:[
+  {id:"a",t:"promised",ok:true,e:"promised = prometeu."},
+  {id:"b",t:"complained",e:"= reclamou."},
+  {id:"c",t:"admitted",e:"= admitiu."},
+  {id:"d",t:"suggested",e:"= sugeriu."}]},
+ {tipo:"mc",tema:"Reporting Verbs",p:"'sugeriu' em inglês é:",alts:[
+  {id:"a",t:"suggested",ok:true,e:"suggested = sugeriu."},
+  {id:"b",t:"promised",e:"= prometeu."},
+  {id:"c",t:"admitted",e:"= admitiu."},
+  {id:"d",t:"complained",e:"= reclamou."}]},
+ {tipo:"mc",tema:"Time Expressions",p:"No reported speech, 'next week' vira:",alts:[
+  {id:"a",t:"the following week",ok:true,e:"next week → the following week (ou the week after)."},
+  {id:"b",t:"the previous week",e:"= reported de 'last week'."},
+  {id:"c",t:"the day after",e:"= reported de 'tomorrow'."},
+  {id:"d",t:"that day",e:"= reported de 'today'."}]},
+ {tipo:"mc",tema:"Time Expressions",p:"No reported speech, 'ten years ago' vira:",alts:[
+  {id:"a",t:"ten years before",ok:true,e:"ago → before: 'ten years before'."},
+  {id:"b",t:"ten years after",e:"Muda o sentido; 'ago' vira 'before'."},
+  {id:"c",t:"the previous year",e:"= reported de 'last year'."},
+  {id:"d",t:"that year",e:"= reported de 'this year'."}]},
+ {tipo:"mc",tema:"Reported Questions",p:"Direct: 'What do you want?' (she asked me) →",alts:[
+  {id:"a",t:"She asked me what I wanted.",ok:true,e:"Sem 'do', ordem 'what I wanted', recuo (want→wanted)."},
+  {id:"b",t:"She asked me what did I want.",e:"Erro: não se usa 'did'."},
+  {id:"c",t:"She asked me what do I want.",e:"Erro: não se usa 'do'."},
+  {id:"d",t:"She asked me what I want.",e:"Faltou o recuo: 'want' vira 'wanted'."}]},
+ {tipo:"mc",tema:"Reported Questions",p:"Direct: 'Are you ready?' (he asked me) →",alts:[
+  {id:"a",t:"He asked me if I was ready.",ok:true,e:"Pergunta de sim/não: usa 'if' (ou whether) e recua (are→was)."},
+  {id:"b",t:"He asked me if I am ready.",e:"Faltou recuar: 'am' vira 'was'."},
+  {id:"c",t:"He asked me are you ready.",e:"Erro: manteve a ordem e o '?' da pergunta direta."},
+  {id:"d",t:"He asked me that I was ready.",e:"Em pergunta de sim/não usa-se 'if/whether', não 'that'."}]},
+ {tipo:"som",tema:"Developing Products",p:"Sobre o vocabulário de Developing Products, some os números das afirmativas CORRETAS:",itens:[
+  {v:1,t:"'do market research' significa fazer pesquisa de mercado.",ok:true,e:"Correta."},
+  {v:2,t:"'improve the design' significa piorar o design.",e:"Errada: improve = melhorar."},
+  {v:4,t:"'solve any problems' significa resolver os problemas.",ok:true,e:"Correta."},
+  {v:8,t:"'give a demonstration' significa fazer uma demonstração.",ok:true,e:"Correta."},
+  {v:16,t:"'research an idea' significa fabricar uma ideia.",e:"Errada: research = pesquisar."}]},
+ {tipo:"som",tema:"Reported Speech",p:"Sobre as regras do reported speech, some os números das afirmativas CORRETAS:",itens:[
+  {v:1,t:"Em geral não se usam aspas no reported speech.",ok:true,e:"Correta."},
+  {v:2,t:"'can' no reported speech vira 'could'.",ok:true,e:"Correta."},
+  {v:4,t:"'will' no reported speech continua 'will'.",e:"Errada: vira 'would'."},
+  {v:8,t:"'have to' no reported speech vira 'had to'.",ok:true,e:"Correta."},
+  {v:16,t:"O tempo verbal geralmente avança para o futuro.",e:"Errada: ele recua um tempo."}]},
+ {tipo:"som",tema:"Pronouns & Possessives",p:"Sobre pronomes e possessivos no reported speech, some os números das afirmativas CORRETAS:",itens:[
+  {v:1,t:"'I' pode virar 'he' ou 'she'.",ok:true,e:"Correta."},
+  {v:2,t:"'we' vira 'they'.",ok:true,e:"Correta."},
+  {v:4,t:"'my' vira 'their'.",e:"Errada: 'my' vira 'his/her'."},
+  {v:8,t:"'our' vira 'their'.",ok:true,e:"Correta."},
+  {v:16,t:"'me' vira 'we'.",e:"Errada: 'me' vira 'him/her'."}]},
+ {tipo:"som",tema:"Reported Questions",p:"Sobre reported questions, some os números das afirmativas CORRETAS:",itens:[
+  {v:1,t:"Em perguntas wh- relatadas, o sujeito vem antes do verbo.",ok:true,e:"Correta."},
+  {v:2,t:"Em perguntas relatadas usamos do/does/did normalmente.",e:"Errada: não se usa do/does/did."},
+  {v:4,t:"Perguntas de sim/não são relatadas com 'if' ou 'whether'.",ok:true,e:"Correta."},
+  {v:8,t:"'What is your name?' vira 'She asked what my name was.'",ok:true,e:"Correta."},
+  {v:16,t:"Perguntas relatadas mantêm o ponto de interrogação (?).",e:"Errada: viram afirmação, sem '?'."}]},
+ {tipo:"rom",tema:"Reported Speech",p:"Analise as transformações para reported speech:",itens:[
+  {n:"I",t:"'I am tired.' → 'He said he was tired.'",ok:true,e:"Correta: am → was."},
+  {n:"II",t:"'I will go.' → 'She said she will go.'",e:"Errada: will → would."},
+  {n:"III",t:"'I have finished.' → 'He said he had finished.'",ok:true,e:"Correta: present perfect → past perfect."},
+  {n:"IV",t:"'I can swim.' → 'She said she could swim.'",ok:true,e:"Correta: can → could."}],
+  alts:[{id:"a",t:"Apenas I, III e IV.",ok:true,e:"Só a II está errada (will → would)."},{id:"b",t:"Apenas I e II.",e:"II está errada e faltam III e IV."},{id:"c",t:"Apenas II e IV.",e:"II está errada."},{id:"d",t:"Todas as afirmativas.",e:"II está errada."}]},
+ {tipo:"rom",tema:"Time Expressions",p:"Analise as transformações das expressões de tempo:",itens:[
+  {n:"I",t:"'today' → 'that day'.",ok:true,e:"Correta."},
+  {n:"II",t:"'yesterday' → 'the day after'.",e:"Errada: yesterday → the day before / the previous day."},
+  {n:"III",t:"'last week' → 'the week before'.",ok:true,e:"Correta."},
+  {n:"IV",t:"'this year' → 'that year'.",ok:true,e:"Correta."}],
+  alts:[{id:"a",t:"Apenas I, III e IV.",ok:true,e:"Só a II está errada."},{id:"b",t:"Apenas I e II.",e:"II está errada."},{id:"c",t:"Apenas II e III.",e:"II está errada."},{id:"d",t:"Todas as afirmativas.",e:"II está errada."}]},
+ {tipo:"rom",tema:"Reported Questions",p:"Analise as perguntas relatadas:",itens:[
+  {n:"I",t:"'Where do you live?' → 'She asked where he lived.'",ok:true,e:"Correta: sem 'do', ordem e recuo certos."},
+  {n:"II",t:"'Do you like science?' → 'I asked if he liked science.'",ok:true,e:"Correta: 'if' + recuo."},
+  {n:"III",t:"'Can you help?' → 'He asked whether I could help.'",ok:true,e:"Correta: 'whether' + can→could."},
+  {n:"IV",t:"'What are you doing?' → 'She asked what was I doing.'",e:"Errada: a ordem certa é 'what I was doing'."}],
+  alts:[{id:"a",t:"Apenas I, II e III.",ok:true,e:"Só a IV está errada (ordem)."},{id:"b",t:"Apenas IV.",e:"A IV é justamente a errada."},{id:"c",t:"Apenas I e IV.",e:"IV está errada."},{id:"d",t:"Todas as afirmativas.",e:"IV está errada."}]},
+ {tipo:"rom",tema:"Reporting Verbs",p:"Analise o sentido dos reporting verbs:",itens:[
+  {n:"I",t:"'complained' = reclamou.",ok:true,e:"Correta."},
+  {n:"II",t:"'promised' = prometeu.",ok:true,e:"Correta."},
+  {n:"III",t:"'admitted' = negou.",e:"Errada: admitted = admitiu."},
+  {n:"IV",t:"'suggested' = sugeriu.",ok:true,e:"Correta."}],
+  alts:[{id:"a",t:"Apenas I, II e IV.",ok:true,e:"Só a III está errada (admitted = admitiu)."},{id:"b",t:"Apenas III.",e:"A III é a errada."},{id:"c",t:"Apenas I e III.",e:"III está errada."},{id:"d",t:"Todas as afirmativas.",e:"III está errada."}]}
+];
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) — correta guardada pelo id ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var rnd=mulberry32(21102026);
+Q.forEach(function(q){ if(q.alts){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; } if(q.tipo==='som'){ q.soma=q.itens.filter(function(x){return x.ok;}).reduce(function(a,x){return a+x.v;},0); } });
+var OBJ=Q.length;
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_simulado_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'SIM-'+xx+'-'+yy; }
+function respondida(i){ var q=Q[i], r=estado.resp[i]; if(r===undefined||r===null||r==='') return false; return true; }
+function acertou(i){ var q=Q[i], r=estado.resp[i]; if(q.tipo==='som') return parseInt(r,10)===q.soma; var a=q.alts.filter(function(x){return x.id===r;})[0]; return !!(a&&a.ok); }
+
+function render(){
+  var c=document.getElementById('questoes'); var h=''; var G=estado.gabarito;
+  Q.forEach(function(q,i){
+    var tipoTxt={mc:'Múltipla escolha',som:'Somatório',rom:'Números romanos'}[q.tipo];
+    h+='<div class="q" id="q'+i+'"><span class="tipo '+q.tipo+'">'+tipoTxt+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+' · '+q.tema+'</div><h3>'+q.p+'</h3>';
+    if(q.tipo==='som'||q.tipo==='rom'){
+      q.itens.forEach(function(it){ var lab=q.tipo==='som'? ('('+(it.v<10?'0':'')+it.v+') ') : (it.n+'. '); var cls='afirm'+(G?(it.ok?' ok':' no'):''); h+='<div class="'+cls+'">'+lab+it.t+(G?'<div class="exp show">'+(it.ok?'✅ ':'❌ ')+it.e+'</div>':'')+'</div>'; });
+    }
+    if(q.tipo==='som'){
+      var r=estado.resp[i]; var ok=G?acertou(i):null;
+      h+='<div class="soma" style="margin-top:10px">Soma: <input type="number" min="0" max="31" id="som'+i+'" value="'+(r!==undefined?r:'')+'" '+(estado.enviado?'disabled':'')+' oninput="marcar('+i+',this.value)"><span class="lab">'+(G?(ok?'✅ Correto: '+q.soma:'❌ Você somou '+r+'; o certo é '+q.soma):'')+'</span></div>';
+    } else {
+      q.ordem.forEach(function(a,k){
+        var letra='abcd'[k]; var sel=estado.resp[i]===a.id; var cls='alt'+(sel?' sel':'');
+        if(G){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+        h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t+(G?'<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>':'')+'</label>';
+      });
+    }
+    h+='</div>';
+  });
+  c.innerHTML=h; atualizarBarra(); if(estado.enviado) mostrarEnviado();
+}
+function marcar(i,v){ if(estado.enviado) return; estado.resp[i]=v; salvar(); var q=document.getElementById('q'+i); if(Q[i].tipo==='mc'||Q[i].tipo==='rom'){ var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===v); } } atualizarBarra(); }
+function atualizarBarra(){ var n=0; Q.forEach(function(q,i){ if(respondida(i)) n++; }); document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar simulado ('+n+' de '+Q.length+' respondidas)':'📨 Enviar simulado'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ if(acertou(i)===true) ac++; });
+  estado.acertos=ac; estado.objetivas=OBJ; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Simulado enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado.';
+  document.getElementById('gab').classList.add('show'); document.getElementById('fim').style.display='block';
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); var m=document.getElementById('gab-msg'); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); m.innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+OBJ+' questões.</span>'; } else { m.innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='simulado_prancheta-de-invencoes.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Simulado? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { mostrarModal('O Simulado já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); acaoZerar=null; return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); }
+</script>
+</body>
+</html>

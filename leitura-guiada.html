@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada · Prancheta de Invenções · Inglês 9º</title>
+<style>
+  :root{
+    --prancha:#0e1a24; --prancha2:#132433; --aco:#24384a; --aco2:#34506a;
+    --ciano:#38bdf8; --ambar:#f5a524; --verde:#3ddc84; --verde2:#248a56;
+    --vermelho:#ef4444; --texto:#e6eef5; --cinza:#93a6b8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:
+    radial-gradient(1100px 480px at 50% -10%,#10304a,#0e1a24 60%),var(--prancha);
+    color:var(--texto);line-height:1.6;padding-bottom:60px;
+    background-image:radial-gradient(1100px 480px at 50% -10%,#10304a,#0e1a24 60%),
+      linear-gradient(rgba(56,189,248,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(56,189,248,.05) 1px,transparent 1px);
+    background-size:auto,26px 26px,26px 26px}
+  header{background:linear-gradient(120deg,#0b2740,#0e3a54);padding:26px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--ciano)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#bfe6ff;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#d4ecfb;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--prancha2);color:var(--texto);text-decoration:none;padding:7px 12px;
+    border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--ciano);color:#042033;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--prancha2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ambar);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--prancha2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--prancha);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .mini:hover{background:#1b2d3d}
+  .bloco{background:var(--prancha2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#102a3e,#14374f);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--ciano);color:#042033;font-weight:bold;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:5px}
+  .texto .destaque{color:var(--ambar);font-weight:bold}
+  .formula{display:inline-block;background:rgba(56,189,248,.14);color:var(--ciano);font-weight:bold;padding:2px 9px;border-radius:6px;margin:0 2px}
+  .olhar{background:#102a3e;border-left:3px solid var(--ambar);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--ambar)}
+  .audiobox{background:#0b1722;border:1px dashed var(--aco2);border-radius:10px;padding:12px 14px;margin:10px 0}
+  .audiobox .lab{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--ciano);margin-bottom:8px;font-weight:bold}
+  .audio-term{display:inline-flex;align-items:center;gap:6px;background:rgba(61,220,132,.12);border:1px solid var(--verde2);color:#bff3d6;padding:3px 8px 3px 10px;border-radius:8px;font-size:.9rem;margin:3px 2px}
+  .audio-term .en{font-weight:600;color:#e9fff3}
+  .audio-term .tr{color:var(--cinza);font-size:.82rem}
+  .audio-btn{background:var(--verde);color:#042016;border:none;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:.72rem;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .audio-btn:hover{transform:scale(1.12)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#0b1722;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#163a44;color:#8fd9e4}
+  .tag.apl{background:#1d4530;color:#a7e0bf}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg label em{color:var(--ciano);font-style:normal;background:#102a3e;padding:1px 6px;border-radius:5px}
+  .perg textarea{width:100%;min-height:70px;background:#081019;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3d12;border:1px solid var(--ambar);color:#ffe9ad}
+  .aviso.vermelho{display:block;background:#4a1717;border:1px solid var(--vermelho);color:#ffc9c9}
+  .modelo{margin-top:10px;padding:10px 12px;background:#0e2b1f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe0b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#081019;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#1b2d3d;color:#5f7488;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--ciano);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1414;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb3b3;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--prancha2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--ciano);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left}
+  th{background:#102a3e}
+  .revisar{background:#3a2e06;border:2px solid var(--ambar);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--ambar);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--prancha2);border:1px dashed var(--ciano);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--ciano);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#102a1f,#14382a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe0b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#1b2d3d;color:#5f7488;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--prancha2);border:1px solid var(--ciano);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--ciano);color:#042033;border:none;border-radius:8px;padding:9px 16px;font-weight:bold}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Prancheta de Invenções · Inglês 9º ano · CCF</div>
+  <h1>📖 Leitura Guiada · Mesa de Projeto</h1>
+  <p>Unit 7 "From Idea to Reality" · Prova 20/10 · Reported Speech, Time Expressions, Developing Products</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🛠️ Como funciona a Mesa de Projeto</h2>
+    <p>Aqui você é o(a) inventor(a): leva uma <b>ideia</b> até virar <b>produto</b>, em <b>8 estações</b>. A cada estação, leia a explicação, <b>ouça o inglês no 🔊</b> e <b>escreva com as suas palavras</b> as respostas das 3 perguntas. A próxima estação só abre quando você conferir a anterior.</p>
+    <ol>
+      <li>Leia a estação com calma (todo o conteúdo vem do seu livro, Unit 7).</li>
+      <li>Toque no 🔊 para ouvir a pronúncia em inglês (voz do navegador).</li>
+      <li>Responda as 3 perguntas <b>escrevendo</b> (não vale copiar o texto).</li>
+      <li>Clique em <b>Conferir</b>: aparece a resposta-modelo e uma autoavaliação Sim/Não.</li>
+      <li>Com as 8 estações conferidas e a autoavaliação respondida, o <b>🎯 Quiz destrava</b>.</li>
+    </ol>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="peg">
+    <h3>⚠️ 10 Pegadinhas da Prova (não caia nelas!)</h3>
+    <ol>
+      <li><b>O verbo recua.</b> No reported speech o tempo quase sempre volta um passo: present → past, simple past → past perfect, present perfect → past perfect. Esquecer o recuo é o erro nº 1.</li>
+      <li><b>say × tell.</b> <b>tell</b> precisa da pessoa depois (she told <b>me</b> that…); <b>say</b> não leva pessoa (she said that…). Nunca "she said me".</li>
+      <li><b>Modais e futuro:</b> will → <b>would</b>, can → <b>could</b>, have to → <b>had to</b>, am/is/are going to → <b>was/were going to</b>.</li>
+      <li><b>Reported questions não usam do/does/did.</b> O certo é "where he <b>lived</b>", não "where <b>did</b> he live".</li>
+      <li><b>A ordem muda na pergunta relatada:</b> o sujeito vem antes do verbo, como numa afirmação (what <b>I was</b> doing), não "what was I doing".</li>
+      <li><b>Perguntas de sim/não</b> são relatadas com <b>if</b> ou <b>whether</b> (He asked me <b>if</b> I liked…).</li>
+      <li><b>Pronomes mudam:</b> I → he/she · we → they · me → him/her.</li>
+      <li><b>Possessivos mudam:</b> my → his/her · our → their.</li>
+      <li><b>Expressões de tempo mudam:</b> today → that day · tomorrow → the following day · yesterday → the previous day · next week → the following week · ago → before.</li>
+      <li><b>Developing products — a ordem:</b> research an idea → develop a concept → design a prototype → test out the product → improve the design → solve any problems → manufacture the gadget → develop the product.</li>
+    </ol>
+  </div>
+
+  <div class="cobertura">
+    <h3>🧭 Cobertura: Tópico → Estação</h3>
+    <table>
+      <thead><tr><th>Tópico da prova</th><th>Estação</th></tr></thead>
+      <tbody>
+        <tr><td>Developing Products: expressões (verbo+substantivo) e os 8 passos na ordem</td><td>1</td></tr>
+        <tr><td>Reported Speech: o que é, sem aspas, say × tell, recuo do verbo</td><td>2</td></tr>
+        <tr><td>Mudança de tempos (present→past, progressive, past→past perfect, present perfect→past perfect)</td><td>3</td></tr>
+        <tr><td>Mudança de modais/futuro (will→would, can→could, have to→had to, going to)</td><td>4</td></tr>
+        <tr><td>Pronomes e possessivos + reporting verbs (said, told, asked, complained, suggested, promised, admitted)</td><td>5</td></tr>
+        <tr><td>Time Expressions no discurso indireto</td><td>6</td></tr>
+        <tr><td>Reported Questions com wh- (information questions)</td><td>7</td></tr>
+        <tr><td>Reported Questions de sim/não (if / whether)</td><td>8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="revisar" id="revisar" style="display:none">
+    <h3>🔁 Para revisar antes da prova</h3>
+    <ul id="revisar-lista"></ul>
+  </div>
+
+  <div class="relatorio">
+    <h3>📊 Para os pais (resumo desta leitura)</h3>
+    <div id="rel-conteudo">Assim que o aprendiz for conferindo as estações, o resumo aparece aqui.</div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Quiz</h3>
+    <p id="trilha-fim-txt">O Quiz destrava quando as 8 estações estiverem conferidas e a autoavaliação respondida.</p>
+    <a class="btn off" id="btn-prox" href="quiz.html">🎯 Ir para o Quiz</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🛠️ Good luck!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== ÁUDIO (Web Speech API · inglês) ====== */
+function speak(t){ if(!('speechSynthesis' in window))return; var u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=1; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='ideia_realidade';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+
+/* ====== DADOS DAS ESTAÇÕES (conteúdo real da Unit 7 — From Idea to Reality) ====== */
+var BLOCOS = [
+ {
+  porto:"Estação 1 · Developing Products", titulo:"🧪 Do zero ao produto: o vocabulário",
+  texto:[
+   "Na Unit 7, aprendemos as <span class='destaque'>expressões (verbo + substantivo)</span> usadas para desenvolver um produto. Elas aparecem muito em exercícios de combinar (match) e de completar frases. Ouça cada uma no 🔊 e repare na tradução.",
+   "Existe também uma <span class='destaque'>ordem certa</span> para desenvolver um produto ou gadget. O livro pede para numerar os passos de <b>1 a 8</b>: <span class='formula'>1 research an idea</span> → <span class='formula'>2 develop a concept</span> → <span class='formula'>3 design a prototype</span> → <span class='formula'>4 test out the product</span> → <span class='formula'>5 improve the design</span> → <span class='formula'>6 solve any problems</span> → <span class='formula'>7 manufacture the gadget</span> → <span class='formula'>8 develop the product</span>.",
+   "<div class='olhar'><b>Olho na prova:</b> primeiro a gente pesquisa a ideia e cria o conceito; só depois faz o protótipo, testa, melhora e resolve os problemas; por último fabrica e desenvolve o produto. Um passo depende do outro — por isso a ordem cai na prova.</div>"
+  ],
+  audios:[
+   {t:"research an idea",tr:"pesquisar uma ideia"},
+   {t:"develop a concept",tr:"desenvolver um conceito"},
+   {t:"invent characters",tr:"inventar personagens"},
+   {t:"design a prototype",tr:"desenhar/projetar um protótipo"},
+   {t:"test out the product",tr:"testar o produto"},
+   {t:"improve the design",tr:"melhorar o design"},
+   {t:"solve any problems",tr:"resolver os problemas"},
+   {t:"manufacture the gadget",tr:"fabricar o aparelho"},
+   {t:"develop the product",tr:"desenvolver o produto"},
+   {t:"give a demonstration",tr:"fazer uma demonstração"},
+   {t:"do market research",tr:"fazer pesquisa de mercado"},
+   {t:"analyze the results",tr:"analisar os resultados"}
+  ],
+  perguntas:[
+   {tag:"conc",q:"Com as suas palavras, o que significa 'desenvolver um produto' (do começo ao fim) e por que a ORDEM dos passos importa?",modelo:"É o caminho de transformar uma ideia em um produto pronto, passo a passo. A ordem importa porque cada passo depende do anterior: não dá para fabricar (manufacture) antes de projetar o protótipo, testar e melhorar.",chk:["Disse que é transformar uma ideia em produto pronto?","Expliquei por que a ordem importa (um passo depende do outro)?"]},
+   {tag:"apl",q:"Coloque na ordem certa (1 a 4), escrevendo em inglês: test out the product / research an idea / design a prototype / develop a concept.",modelo:"1) research an idea · 2) develop a concept · 3) design a prototype · 4) test out the product.",chk:["Comecei por 'research an idea'?","'design a prototype' veio antes de 'test out the product'?"]},
+   {tag:"apl",q:"Escreva, em inglês, a expressão (verbo + substantivo) que combina com cada situação: (a) descobrir o que o público quer comprar; (b) consertar os erros que apareceram no teste.",modelo:"(a) do market research (fazer pesquisa de mercado). (b) solve any problems (resolver os problemas) — também vale 'improve the design'.",chk:["(a) ficou 'do market research'?","(b) ficou 'solve any problems' (ou 'improve the design')?"]}
+  ]
+ },
+ {
+  porto:"Estação 2 · Reported Speech", titulo:"🗒️ O registro do inventor: o que é reported speech",
+  texto:[
+   "O <span class='destaque'>reported speech</span> (discurso indireto) é usado para <b>relatar o que outra pessoa disse</b>, do nosso ponto de vista. Pense no inventor anotando no caderno o que a equipe falou. Aqui <b>não usamos aspas</b>.",
+   "Usamos um <span class='destaque'>reporting verb</span> (verbo de relato), como <b>said</b> e <b>told</b>, e o <b>tempo verbal geralmente recua</b> um tempo. Exemplo: <em>\"I am tired\"</em> vira <span class='formula'>She said she was tired.</span>",
+   "<span class='destaque'>say × tell:</span> <b>tell</b> precisa da pessoa logo depois (She <b>told me</b> that…); <b>say</b> não leva pessoa (She <b>said</b> that…). Cuidado: \"she said me\" está errado.",
+   "<div class='olhar'><b>Olho na prova:</b> três coisas podem mudar do direto para o indireto — o <b>tempo verbal</b> (recua), os <b>pronomes/possessivos</b> e, às vezes, as <b>expressões de tempo</b>. Vamos ver cada uma nas próximas estações.</div>"
+  ],
+  audios:[
+   {t:"She said she was tired.",tr:"Ela disse que estava cansada."},
+   {t:"He told me he was busy.",tr:"Ele me disse que estava ocupado."}
+  ],
+  perguntas:[
+   {tag:"conc",q:"Explique com as suas palavras o que é 'reported speech' e cite DUAS coisas que mudam quando passamos do discurso direto para o indireto.",modelo:"É relatar o que alguém disse, sem usar aspas, do nosso ponto de vista. Mudam, por exemplo: o tempo verbal (recua um tempo), os pronomes/possessivos e, às vezes, as expressões de tempo.",chk:["Disse que é relatar a fala de alguém sem aspas?","Citei duas mudanças (tempo verbal, pronomes/possessivos ou expressões de tempo)?"]},
+   {tag:"apl",q:"Complete com SAID ou TOLD: (a) She ___ that she was happy. (b) She ___ me that she was happy.",modelo:"(a) said · (b) told. 'tell' pede a pessoa depois (told me); 'say' não leva pessoa (said that).",chk:["(a) ficou 'said'?","(b) ficou 'told' (porque vem 'me')?"]},
+   {tag:"apl",q:"Passe para o reported speech (ele disse): Direct: 'I am a student.'",modelo:"He said (that) he was a student. ('am' vira 'was'; 'I' vira 'he'.)",chk:["Usei 'said'?","'am' virou 'was' e 'I' virou 'he'?"]}
+  ]
+ },
+ {
+  porto:"Estação 3 · Reported Speech", titulo:"⏪ O recuo dos tempos (parte 1)",
+  texto:[
+   "A regra principal é: o verbo <span class='destaque'>recua um tempo</span>. Veja os quatro casos mais cobrados (ouça cada frase relatada no 🔊):",
+   "• <b>Simple present → simple past:</b> <em>\"I go to school every day\"</em> → <span class='formula'>She said she went to school every day.</span>",
+   "• <b>Present progressive → past progressive:</b> <em>\"I'm not feeling well\"</em> → <span class='formula'>He said he wasn't feeling well.</span>",
+   "• <b>Simple past → past perfect:</b> <em>\"I read that book last year\"</em> → <span class='formula'>He said he'd read that book the previous year.</span>",
+   "• <b>Present perfect → past perfect:</b> <em>\"I've never been to Bristol\"</em> → <span class='formula'>She said she'd never been to Bristol.</span>",
+   "<div class='olhar'><b>Dica:</b> <b>'d</b> é a forma curta de <b>had</b> (he'd read = he had read). O past perfect é sempre <b>had + particípio</b>.</div>"
+  ],
+  audios:[
+   {t:"She said she went to school every day.",tr:"present → past"},
+   {t:"He said he wasn't feeling well.",tr:"present progressive → past progressive"},
+   {t:"He said he had read that book the previous year.",tr:"past → past perfect"},
+   {t:"She said she had never been to Bristol.",tr:"present perfect → past perfect"}
+  ],
+  perguntas:[
+   {tag:"conc",q:"Em geral, o que acontece com o tempo verbal quando uma fala vira reported speech? Explique a regra do 'recuo' e dê um exemplo de recuo.",modelo:"O verbo recua um tempo: present vira past, present progressive vira past progressive, simple past e present perfect viram past perfect. Ex.: 'I go' → 'she went'; 'I have seen' → 'she had seen'.",chk:["Disse que o verbo 'recua' um tempo?","Dei um exemplo de recuo (ex.: present→past ou present perfect→past perfect)?"]},
+   {tag:"apl",q:"Passe para reported speech (she said): 'I am watching TV.'",modelo:"She said (that) she was watching TV. (present progressive → past progressive; 'I' → 'she'.)",chk:["'am watching' virou 'was watching'?","'I' virou 'she'?"]},
+   {tag:"apl",q:"Passe para reported speech (he said): 'I have finished my homework.'",modelo:"He said (that) he had finished his homework. (present perfect → past perfect; 'my' → 'his'.)",chk:["'have finished' virou 'had finished'?","'my' virou 'his'?"]}
+  ]
+ },
+ {
+  porto:"Estação 4 · Reported Speech", titulo:"⏪ Modais e futuro (parte 2)",
+  texto:[
+   "Modais e formas de futuro também recuam. Decore estes quatro (ouça no 🔊):",
+   "• <b>will → would:</b> <em>\"I'll be late\"</em> → <span class='formula'>She said she'd be late.</span> (she'd = she would)",
+   "• <b>am/is/are going to → was/were going to:</b> <em>\"I'm going to walk home\"</em> → <span class='formula'>He said he was going to walk home.</span>",
+   "• <b>can → could:</b> <em>\"I can buy the drinks later\"</em> → <span class='formula'>She said she could buy the drinks later.</span>",
+   "• <b>have to → had to:</b> <em>\"I have to finish my homework first\"</em> → <span class='formula'>He said he had to finish his homework first.</span>",
+   "<div class='olhar'><b>Olho na prova:</b> cuidado para não deixar 'will' ou 'can' parados. Se a frase foi relatada (reported), eles viram 'would' e 'could'.</div>"
+  ],
+  audios:[
+   {t:"She said she would be late.",tr:"will → would"},
+   {t:"He said he was going to walk home.",tr:"going to → was/were going to"},
+   {t:"She said she could buy the drinks later.",tr:"can → could"},
+   {t:"He said he had to finish his homework first.",tr:"have to → had to"}
+  ],
+  perguntas:[
+   {tag:"apl",q:"Passe para reported speech (she said): 'I will help you.'",modelo:"She said (that) she would help me. ('will' → 'would'; o 'you' vira 'me' se quem relata é a pessoa ajudada.)",chk:["'will' virou 'would'?","Mantive o sentido (she would help…)?"]},
+   {tag:"apl",q:"Passe para reported speech (he said): 'I can swim.'",modelo:"He said (that) he could swim. ('can' → 'could'; 'I' → 'he'.)",chk:["'can' virou 'could'?","'I' virou 'he'?"]},
+   {tag:"conc",q:"Complete a regra do recuo: no reported speech, 'will' vira ___, 'can' vira ___, 'have to' vira ___ e 'am/is/are going to' vira ___.",modelo:"will → would; can → could; have to → had to; am/is/are going to → was/were going to.",chk:["Acertei will→would e can→could?","Acertei have to→had to e going to→was/were going to?"]}
+  ]
+ },
+ {
+  porto:"Estação 5 · Pronomes & Reporting Verbs", titulo:"👥 Quem falou com quem + verbos de relato",
+  texto:[
+   "No reported speech, os <span class='destaque'>pronomes e possessivos</span> mudam conforme o ponto de vista: <b>I → he/she</b>, <b>we → they</b>, <b>my → his/her</b>, <b>our → their</b>, <b>me → him/her</b>.",
+   "Exemplo: Lucy disse <em>\"I watched a movie with my sister\"</em> → <span class='formula'>Lucy said that she had watched a movie with her sister.</span> (I → she; my → her; watched → had watched)",
+   "Além de <b>said</b> e <b>told</b>, existem outros <span class='destaque'>reporting verbs</span> que mostram a intenção da fala: <b>asked</b> (perguntou), <b>complained</b> (reclamou), <b>suggested</b> (sugeriu), <b>promised</b> (prometeu), <b>admitted</b> (admitiu).",
+   "<div class='olhar'><b>Olho na prova:</b> escolher o reporting verb certo mostra o sentido. Se a pessoa reclamou, use <b>complained</b>; se prometeu, <b>promised</b>; se sugeriu, <b>suggested</b>.</div>"
+  ],
+  audios:[
+   {t:"Lucy said that she had watched a movie with her sister.",tr:"I→she · my→her · watched→had watched"},
+   {t:"She complained that the room was cold.",tr:"complained = reclamou"},
+   {t:"He promised that he would help.",tr:"promised = prometeu"}
+  ],
+  perguntas:[
+   {tag:"apl",q:"Lucy disse: 'I watched a movie with my sister.' Escreva a frase no reported speech.",modelo:"Lucy said (that) she had watched a movie with her sister. ('I'→'she', 'my'→'her', 'watched'→'had watched'.)",chk:["'I' virou 'she' e 'my' virou 'her'?","'watched' virou 'had watched'?"]},
+   {tag:"apl",q:"Alguém RECLAMOU que o quarto estava frio. Qual reporting verb usamos em inglês? Escreva a frase relatada completa.",modelo:"complained. Ex.: She complained that the room was cold. ('reclamar' = to complain.)",chk:["Escolhi 'complained'?","Liguei o verbo ao sentido de reclamar?"]},
+   {tag:"conc",q:"Como mudam os pronomes/possessivos 'we' e 'our' no reported speech? Dê um exemplo curto.",modelo:"we → they e our → their. Ex.: 'We lost our keys' → They said (that) they had lost their keys.",chk:["Disse que we→they e our→their?","Dei um exemplo curto?"]}
+  ]
+ },
+ {
+  porto:"Estação 6 · Time Expressions", titulo:"🗓️ As palavras de tempo também mudam",
+  texto:[
+   "Quando relatamos, quem conta pode estar falando em outro dia. Por isso algumas <span class='destaque'>expressões de tempo</span> mudam (ouça o exemplo relatado no 🔊):",
+   "• <b>today → that day</b> · <b>tomorrow → the day after / the following day</b> · <b>yesterday → the day before / the previous day</b>",
+   "• <b>next week → the week after / the following week</b> · <b>last week → the week before / the previous week</b>",
+   "• <b>ten years ago → ten years before</b> · <b>this year → that year</b>",
+   "Exemplo: <em>\"I want to go shopping next week\"</em> → <span class='formula'>She said she wanted to go shopping the following week.</span>",
+   "<div class='olhar'><b>Dica:</b> pense no sentido — 'ago' (atrás, contando de agora) vira 'before' (antes, contando do momento da fala).</div>"
+  ],
+  audios:[
+   {t:"She said she wanted to go shopping the following week.",tr:"next week → the following week"},
+   {t:"He said he had called the previous day.",tr:"yesterday → the previous day"}
+  ],
+  perguntas:[
+   {tag:"apl",q:"Troque para o reported speech estas expressões de tempo: 'tomorrow', 'yesterday', 'next week'.",modelo:"tomorrow → the following day (ou the day after); yesterday → the previous day (ou the day before); next week → the following week (ou the week after).",chk:["'tomorrow' virou 'the following day'/'the day after'?","'yesterday' e 'next week' corretos?"]},
+   {tag:"apl",q:"Passe a frase inteira para o reported speech (she said): 'I want to go shopping next week.'",modelo:"She said (that) she wanted to go shopping the following week. ('want'→'wanted'; 'next week'→'the following week'.)",chk:["'want' virou 'wanted'?","'next week' virou 'the following week'/'the week after'?"]},
+   {tag:"conc",q:"Por que precisamos trocar palavras como 'today' e 'tomorrow' no reported speech?",modelo:"Porque o momento em que a pessoa falou pode ser diferente do momento em que estamos relatando. O 'today' da fala não é o mesmo 'today' de agora; por isso usamos 'that day', 'the following day' etc., para não confundir as datas.",chk:["Expliquei que o momento de relatar é diferente do momento da fala?","Dei a ideia de evitar confusão de datas?"]}
+  ]
+ },
+ {
+  porto:"Estação 7 · Reported Questions", titulo:"❓ Perguntas com wh- (onde, o quê, como)",
+  texto:[
+   "Para relatar <span class='destaque'>information questions</span> (perguntas com wh-: where, what, when, how…), fazemos duas mudanças: a <b>ordem das palavras muda</b> (o sujeito vem antes do verbo, como numa afirmação) e <b>não usamos do/does/did</b>. O recuo do tempo verbal também vale.",
+   "• <em>\"Where do you live, Kevin?\"</em> → <span class='formula'>Julia asked Kevin where he lived.</span> (sem 'do'; ordem: where <b>he lived</b>)",
+   "• <em>\"What's your favorite gadget?\"</em> → <span class='formula'>She asked him what his favorite gadget was.</span> (ordem: what his favorite gadget <b>was</b>)",
+   "<div class='olhar'><b>Olho na prova:</b> o erro clássico é manter o 'do/did' ou a ordem de pergunta. Errado: \"She asked where did he live\". Certo: \"She asked where he lived\".</div>"
+  ],
+  audios:[
+   {t:"Julia asked Kevin where he lived.",tr:"Where do you live? → relatada"},
+   {t:"She asked him what his favorite gadget was.",tr:"What's your favorite gadget? → relatada"}
+  ],
+  perguntas:[
+   {tag:"apl",q:"Passe para reported speech (she asked him): 'Where do you work?'",modelo:"She asked him where he worked. (tira o 'do'; ordem 'where he worked'; 'work'→'worked'.)",chk:["Tirei o 'do'?","Ficou 'where he worked' (sujeito antes do verbo, no passado)?"]},
+   {tag:"apl",q:"Passe para reported speech (he asked me): 'What are you doing?'",modelo:"He asked me what I was doing. (ordem 'what I was doing'; 'are doing'→'was doing'.)",chk:["A ordem ficou 'what I was doing' (sujeito antes do verbo)?","'are doing' virou 'was doing'?"]},
+   {tag:"conc",q:"Quais são as DUAS mudanças principais ao relatar uma pergunta com wh- (onde, o quê, como)?",modelo:"(1) A ordem muda: o sujeito vem antes do verbo, como numa afirmação. (2) Não se usa o auxiliar do/does/did. (Além disso, o tempo verbal recua.)",chk:["Falei da mudança de ordem (sujeito antes do verbo)?","Falei que não se usa do/does/did?"]}
+  ]
+ },
+ {
+  porto:"Estação 8 · Reported Questions", titulo:"❓ Perguntas de sim/não (if / whether)",
+  texto:[
+   "As <span class='destaque'>yes/no questions</span> (perguntas que se responde com sim ou não) são relatadas com <b>if</b> ou <b>whether</b>. Valem as mesmas regras: muda a ordem, não se usa do/does/did e o tempo recua.",
+   "• <em>\"Can you lend me that book?\"</em> → <span class='formula'>He asked me if/whether I could lend him that book.</span> (can → could)",
+   "• <em>\"Do you like science?\"</em> → <span class='formula'>I asked him if he liked science.</span> (tira o 'do'; like → liked)",
+   "<div class='olhar'><b>Dica:</b> <b>if</b> e <b>whether</b> têm o mesmo sentido aqui (\"se\"). Nunca use 'that' no lugar deles numa pergunta de sim/não.</div>"
+  ],
+  audios:[
+   {t:"He asked me if I could lend him that book.",tr:"Can you lend me…? → relatada"},
+   {t:"I asked him whether he liked science.",tr:"Do you like science? → relatada"}
+  ],
+  perguntas:[
+   {tag:"apl",q:"Passe para reported speech (she asked me): 'Do you like pizza?'",modelo:"She asked me if/whether I liked pizza. (usa 'if' ou 'whether'; tira o 'do'; 'like'→'liked'.)",chk:["Usei 'if' ou 'whether'?","Tirei o 'do' e 'like' virou 'liked'?"]},
+   {tag:"apl",q:"Passe para reported speech (he asked her): 'Will you help me?'",modelo:"He asked her if/whether she would help him. ('will'→'would'; usa 'if'/'whether'.)",chk:["Usei 'if' ou 'whether'?","'will' virou 'would'?"]},
+   {tag:"conc",q:"Qual é a diferença, na forma de relatar, entre uma pergunta com wh- (where, what) e uma pergunta de sim/não?",modelo:"A pergunta com wh- usa a própria palavra interrogativa (where, what…) para ligar a frase. A de sim/não não tem wh-, então usamos 'if' ou 'whether'. Nas duas, a ordem muda e não se usa do/does/did.",chk:["Disse que a de sim/não usa 'if/whether'?","Disse que a wh- usa a palavra interrogativa (where/what)?"]}
+  ]
+ }
+];
+
+/* ====== ESTADO E PERSISTÊNCIA ====== */
+var CHAVE=KIT+'_leitura_v1';
+var mem={};
+var estado=carregar();
+
+function carregar(){
+  try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s); }catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); }
+  return {blocos:{}};
+}
+function calcProgresso(){
+  var conf=0, chkPend=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estado.blocos[i]; if(!b||!b.conferido) return; conf++;
+    bloco.perguntas.forEach(function(p,j){ var ep=(b.perguntas&&b.perguntas[j])||{chk:{}}; p.chk.forEach(function(pt,k){ if(!ep.chk||!ep.chk[k]) chkPend++; }); });
+  });
+  estado.progresso={conferidos:conf,total:BLOCOS.length,chkPendentes:chkPend};
+  if(conf===BLOCOS.length && chkPend===0){ if(!estado.concluido){ estado.concluido=true; estado.concluidoEm=new Date().toISOString(); } }
+  return estado.progresso;
+}
+function salvar(){
+  calcProgresso();
+  var s=JSON.stringify(estado);
+  try{ localStorage.setItem(CHAVE,s); }catch(e){ mem[CHAVE]=s; }
+  var d=new Date();
+  document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR');
+  atualizarTrilhaFim();
+}
+function atualizarTrilhaFim(){
+  var p=estado.progresso||calcProgresso();
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox');
+  var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){
+    h3.textContent='✅ Leitura concluída — Quiz destravado!';
+    txt.textContent=estado.concluido?'Você conferiu as 8 estações e respondeu a autoavaliação. Agora teste o que aprendeu.':'Trilha liberada pelos pais.';
+    btn.classList.remove('off');
+  } else {
+    h3.textContent='🔒 Próxima etapa: Quiz';
+    var faltam=p.total-p.conferidos;
+    txt.textContent=faltam>0 ? 'Destrava quando você conferir as '+p.total+' estações (faltam '+faltam+').' : 'Falta responder a autoavaliação Sim/Não de '+p.chkPendentes+' ponto(s) para destravar.';
+    btn.classList.add('off');
+  }
+  marcarNav();
+}
+function estBloco(i){ if(!estado.blocos[i]) estado.blocos[i]={aberto:i===0,conferido:false,perguntas:{}}; return estado.blocos[i]; }
+function estPerg(i,j){ var b=estBloco(i); if(!b.perguntas[j]) b.perguntas[j]={resp:'',warned:false,red:false,tentou:'',chk:{}}; return b.perguntas[j]; }
+
+/* ====== ANTICÓPIA (motor validado) ====== */
+function normPal(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/<[^>]*>/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function maiorRun(aw,bw){
+  var bStr=' '+bw.join(' ')+' ', best=0;
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>0; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ if(len>best)best=len; break; }
+    }
+  }
+  return best;
+}
+function cobertoPorRuns(aw,bw,minRun){
+  var bStr=' '+bw.join(' ')+' ', cov=new Array(aw.length).fill(false);
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>=minRun; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)cov[k]=true; break; }
+    }
+  }
+  return cov.filter(Boolean).length;
+}
+function ehCopia(resp, textoBloco, pergunta){
+  var a=normPal(resp), src=normPal(textoBloco), q=normPal(pergunta);
+  if(a.length<5) return false;
+  var qStr=' '+q.join(' ')+' ', keep=new Array(a.length).fill(true);
+  for(var i=0;i<a.length;i++){
+    for(var len=a.length-i; len>=4; len--){
+      var sub=a.slice(i,i+len).join(' ');
+      if(qStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)keep[k]=false; break; }
+    }
+  }
+  var af=a.filter(function(w,idx){return keep[idx];});
+  if(af.length<5) return false;
+  var run=maiorRun(af,src);
+  var cov=cobertoPorRuns(af,src,5);
+  var ratio=cov/af.length;
+  return run>=8 || ratio>0.6;
+}
+
+/* ====== RENDER ====== */
+function textoPlano(bloco){ return bloco.texto.join(' ')+' '+(bloco.audios?bloco.audios.map(function(a){return a.t;}).join(' '):''); }
+
+function render(){
+  var cont=document.getElementById('blocos'); cont.innerHTML='';
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    var div=document.createElement('div'); div.className='bloco'+(b.aberto?'':' travado'); div.id='bloco'+i;
+    var html='<div class="bloco-cab"><div class="num">'+(i+1)+'</div><div><div class="porto">'+bloco.porto+'</div><h3>'+bloco.titulo+'</h3></div></div>';
+    if(!b.aberto){
+      html+='<div class="cadeado">🔒 Esta estação abre quando você conferir a estação anterior.</div>';
+      div.innerHTML=html; cont.appendChild(div); return;
+    }
+    html+='<div class="bloco-corpo"><div class="texto">';
+    bloco.texto.forEach(function(p){ html+= (p.indexOf('<div')===0? p : '<p>'+p+'</p>'); });
+    html+='</div>';
+    if(bloco.audios){
+      html+='<div class="audiobox"><div class="lab">🔊 Ouça em inglês (toque no botão)</div>';
+      bloco.audios.forEach(function(a){
+        html+='<span class="audio-term"><span class="en">'+a.t+'</span><span class="tr">· '+a.tr+'</span><button class="audio-btn" onclick="speak(this.getAttribute(\'data-say\'))" data-say="'+a.t.replace(/"/g,'&quot;')+'" aria-label="Ouvir">🔊</button></span>';
+      });
+      html+='</div>';
+    }
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      var tagTxt=p.tag==='conc'?'Conceito':'Aplicação';
+      html+='<div class="perg'+(ep.red?' red':'')+'" id="perg'+i+'_'+j+'">';
+      html+='<span class="tag '+p.tag+'">'+tagTxt+'</span>';
+      html+='<label>'+(j+1)+'. '+p.q+'</label>';
+      html+='<textarea id="ta'+i+'_'+j+'" oninput="digitou('+i+','+j+')">'+(ep.resp||'')+'</textarea>';
+      html+='<div class="aviso" id="av'+i+'_'+j+'"></div>';
+      html+='<div class="modelo" id="mod'+i+'_'+j+'"><span class="lab">Resposta-modelo</span><p>'+p.modelo+'</p>';
+      html+='<div class="chk" id="chk'+i+'_'+j+'"></div></div>';
+      html+='</div>';
+    });
+    html+='<button class="conferir" id="conf'+i+'" onclick="conferir('+i+')">✔️ Conferir esta estação</button>';
+    html+='<div class="status-bloco" id="st'+i+'"></div>';
+    if(i<BLOCOS.length-1){ html+='<div class="prox" id="px'+i+'"></div>'; }
+    html+='</div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    if(b.aberto && b.conferido){ mostrarConferido(i); }
+    atualizarBotao(i);
+  });
+  atualizarRelatorio();
+  atualizarTrilhaFim();
+}
+
+function digitou(i,j){
+  var ep=estPerg(i,j);
+  ep.resp=document.getElementById('ta'+i+'_'+j).value;
+  if(ep.red){
+    var bloco=BLOCOS[i];
+    if(!ehCopia(ep.resp, textoPlano(bloco), bloco.perguntas[j].q)){
+      ep.red=false;
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso'; av.textContent='';}
+    }
+  }
+  atualizarBotao(i);
+  salvar();
+  atualizarRelatorio();
+}
+
+function atualizarBotao(i){
+  var b=estBloco(i); if(!b.aberto) return;
+  var btn=document.getElementById('conf'+i); if(!btn) return;
+  var todas=true;
+  BLOCOS[i].perguntas.forEach(function(p,j){
+    var v=(document.getElementById('ta'+i+'_'+j)||{}).value||estPerg(i,j).resp||'';
+    if(v.trim().length<3) todas=false;
+  });
+  btn.disabled=!todas;
+}
+
+function conferir(i){
+  var bloco=BLOCOS[i], b=estBloco(i);
+  var algumBloqueado=false;
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    ep.resp=document.getElementById('ta'+i+'_'+j).value;
+    var av=document.getElementById('av'+i+'_'+j);
+    var copia=ehCopia(ep.resp, textoPlano(bloco), p.q);
+    if(copia){
+      if(!ep.warned){
+        ep.warned=true; ep.tentou=ep.resp;
+        av.className='aviso amarelo';
+        av.innerHTML='✋ Boa parte da sua resposta está igual ao texto. Tente <b>reescrever com as suas palavras</b> — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples: o que vale é ser <b>SEU</b>.';
+        algumBloqueado=true;
+      } else {
+        ep.red=true;
+        av.className='aviso vermelho';
+        av.innerHTML='🔴 Esta resposta continua muito parecida com o texto. Ela foi aceita, mas ficou marcada para revisar. Se reescrever com as suas palavras, a marca some.';
+        document.getElementById('perg'+i+'_'+j).classList.add('red');
+      }
+    } else {
+      ep.red=false;
+      if(av){ av.className='aviso'; av.textContent=''; }
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+    }
+  });
+  salvar();
+  if(algumBloqueado){
+    document.getElementById('st'+i).innerHTML='<span style="color:var(--ambar)">✍️ Reescreva as respostas marcadas em amarelo e clique em Conferir de novo.</span>';
+    return;
+  }
+  b.conferido=true;
+  if(i<BLOCOS.length-1){ estBloco(i+1).aberto=true; }
+  salvar();
+  render();
+  var alvo=document.getElementById('bloco'+i);
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarConferido(i){
+  var bloco=BLOCOS[i];
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    var mod=document.getElementById('mod'+i+'_'+j); if(mod) mod.classList.add('show');
+    if(ep.red){ var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.add('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso vermelho'; av.innerHTML='🔴 Resposta marcada para revisar (muito parecida com o texto). Reescreva com as suas palavras para tirar a marca.';}
+    }
+    var chk=document.getElementById('chk'+i+'_'+j); if(chk){
+      var h='<b style="font-size:.8rem;color:#8fe0b4">Confira você: a sua resposta…</b>';
+      p.chk.forEach(function(pt,k){
+        var val=ep.chk[k]||'';
+        h+='<div class="item"><span>'+pt+'</span><span class="simnao">'
+         +'<button class="sim'+(val==='sim'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'sim\')">Sim</button>'
+         +'<button class="nao'+(val==='nao'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'nao\')">Não</button>'
+         +'</span></div>';
+      });
+      chk.innerHTML=h;
+    }
+  });
+  atualizarStatusBloco(i);
+  var btn=document.getElementById('conf'+i); if(btn){ btn.textContent='✔️ Estação conferida'; btn.disabled=true; }
+  if(i<BLOCOS.length-1){
+    var px=document.getElementById('px'+i);
+    if(px) px.innerHTML='<a href="#bloco'+(i+1)+'" onclick="irBloco('+(i+1)+');return false;">➡️ Ir para a próxima estação</a>';
+  }
+}
+function irBloco(i){ var el=document.getElementById('bloco'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function marcarChk(i,j,k,val){
+  var ep=estPerg(i,j); ep.chk[k]=val;
+  salvar(); mostrarConferido(i); atualizarStatusBloco(i); atualizarRelatorio();
+}
+
+function statusPergunta(i,j){
+  var ep=estPerg(i,j), p=BLOCOS[i].perguntas[j];
+  if(ep.red) return 'revisar';
+  var temNao=false, todasResp=true;
+  p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao') temNao=true; if(!ep.chk[k]) todasResp=false; });
+  if(temNao) return 'revisar';
+  if(!todasResp) return 'pendente';
+  return 'ok';
+}
+function atualizarStatusBloco(i){
+  var st=document.getElementById('st'+i); if(!st) return;
+  var revisar=false, pendente=false;
+  BLOCOS[i].perguntas.forEach(function(p,j){ var s=statusPergunta(i,j); if(s==='revisar')revisar=true; if(s==='pendente')pendente=true; });
+  if(revisar) st.innerHTML='<span style="color:#ffb3b3">🔁 Esta estação tem pontos para revisar.</span>';
+  else if(pendente) st.innerHTML='<span style="color:var(--ambar)">📝 Responda a autoavaliação (Sim/Não) de cada pergunta.</span>';
+  else st.innerHTML='<span style="color:#8fe0b4">✅ Estação concluída com sucesso!</span>';
+  atualizarRelatorio();
+}
+
+function atualizarRelatorio(){
+  var lista=[], totalConf=0, totalRed=0, totalNao=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i); if(!b.conferido) return; totalConf++;
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      if(ep.red){ totalRed++; lista.push('Estação '+(i+1)+': pergunta '+(j+1)+' — resposta muito parecida com o texto.'); }
+      p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao'){ totalNao++; lista.push('Estação '+(i+1)+': revisar — "'+pt+'"'); } });
+    });
+  });
+  var rev=document.getElementById('revisar'), rl=document.getElementById('revisar-lista');
+  if(lista.length){ rev.style.display='block'; rl.innerHTML=lista.map(function(x){return '<li>'+x+'</li>';}).join(''); }
+  else { rev.style.display='none'; rl.innerHTML=''; }
+  var rc=document.getElementById('rel-conteudo');
+  rc.innerHTML='<b>Estações conferidas:</b> '+totalConf+' de '+BLOCOS.length+'.<br>'
+    +'<b>Respostas marcadas (muito parecidas com o texto):</b> '+totalRed+'.<br>'
+    +'<b>Pontos marcados como "Não" na autoavaliação:</b> '+totalNao+'.<br>'
+    +(lista.length? '<span style="color:#ffb3b3">Há '+lista.length+' ponto(s) para revisar (lista acima).</span>' : '<span style="color:#8fe0b4">Sem pontos pendentes para revisar. 👏</span>');
+}
+
+/* ====== EXPORTAR / IMPORTAR / ZERAR ====== */
+function exportar(){
+  var dados=JSON.stringify(estado,null,2);
+  var blob=new Blob([dados],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-guiada_prancheta-de-invencoes.json'; a.click();
+}
+function importar(ev){
+  var f=ev.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false); }catch(e){ mostrarModal('❌ Arquivo inválido.',false); } };
+  r.readAsText(f);
+}
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Tem certeza que quer apagar TODO o progresso desta leitura? (O Quiz continua destravado se já tiver sido destravado.)',true); }
+function mostrarModal(txt,confirmar){
+  document.getElementById('modal-txt').innerHTML=txt;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none';
+  document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar && acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={blocos:{}}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); render(); } acaoZerar=null; fecharModal(); };
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+render();
+</script>
+</body>
+</html>

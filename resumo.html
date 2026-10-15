@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Prancheta de Invenções · Inglês 9º</title>
+<style>
+  :root{--prancha:#0e1a24;--prancha2:#132433;--aco:#24384a;--aco2:#34506a;--ciano:#38bdf8;--ambar:#f5a524;--verde:#3ddc84;--verde2:#248a56;--vermelho:#ef4444;--texto:#e6eef5;--cinza:#93a6b8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:radial-gradient(1100px 480px at 50% -10%,#10304a,#0e1a24 60%),var(--prancha);color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#0b2740,#0e3a54);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--verde)}
+  header .selo{font-size:.78rem;letter-spacing:2px;color:#bff3d6;text-transform:uppercase}
+  header h1{font-size:1.5rem;margin:6px 0 2px}
+  header p{color:#d4f7e4;font-size:.92rem}
+  .wrap{max-width:900px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--prancha2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--verde);color:#042016;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--prancha2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--verde);font-size:1.1rem;margin-bottom:8px}
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--ciano);color:#042033;font-weight:bold}
+  .say{background:var(--verde);color:#042016;border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:.78rem;vertical-align:middle;margin-left:4px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .vcard{background:var(--prancha2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--verde)}
+  .vcard .en{font-size:1.05rem;font-weight:bold;color:#e9fff3;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .vcard .tr{color:var(--cinza);font-size:.9rem;margin-top:4px}
+  .steps{counter-reset:st;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:8px}
+  .step{background:#0b1722;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+  .step .n{background:var(--ambar);color:#2a1a02;font-weight:bold;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step .en{font-weight:600}
+  .step .tr{color:var(--cinza);font-size:.8rem}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:8px}
+  th,td{border:1px solid var(--aco);padding:8px 9px;text-align:left;vertical-align:top}
+  th{background:#102a3e}
+  td .en{color:#bff3d6;font-weight:600}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .peg{background:#3a1414;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .peg b{color:#ffb3b3}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--ambar)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#102a1f,#14382a);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe0b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#042016;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px}
+  .fim button:disabled{background:#1b2d3d;color:#5f7488;cursor:not-allowed}
+  .fim a.btn{display:inline-block;margin:6px;background:var(--ciano);color:#042033;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#1b2d3d;color:#5f7488;pointer-events:none}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--prancha2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .mini{background:var(--prancha);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(5,10,16,.96);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--prancha2);border:1px solid var(--ciano);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a{display:inline-block;background:var(--ciano);color:#042033;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Prancheta de Invenções · Inglês 9º ano · CCF</div>
+  <h1>🗺️ Resumo · Manual do Inventor</h1>
+  <p>Tudo que cai, em tabelas e cards com áudio · Unit 7</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🗺️ Manual do Inventor</h2>
+    <p>Use este resumo para fechar as dúvidas que o Quiz mostrou e revisar na véspera. Toque no 🔊 para ouvir o inglês. Leia até o fim: lá embaixo está o botão <b>"Li o resumo até o fim"</b>, que destrava o <b>📝 Simulado</b>.</p>
+  </div>
+  <div class="painel"><span id="salvo">📏 Rolagem máxima: 0%</span><button class="mini" onclick="exportar()">📥 Exportar</button></div>
+
+  <div class="sec"><span class="pill">Developing Products</span><h2>🧪 Vocabulário (verbo + substantivo)</h2></div>
+  <p style="color:var(--cinza);font-size:.88rem;margin-bottom:8px">Cards fixos: expressão em inglês (com áudio) + tradução.</p>
+  <div class="cards" id="vcards"></div>
+
+  <div class="sec"><span class="pill">Developing Products</span><h2>🔧 Os 8 passos, na ordem</h2></div>
+  <div class="steps" id="steps"></div>
+  <div class="postit">📌 <b>Dica de prova:</b> primeiro pesquisa e conceito; depois protótipo, teste, melhoria e problemas; por último fabricar e desenvolver. A prova pede para <b>numerar na ordem</b>.</div>
+
+  <div class="sec"><span class="pill">Reported Speech</span><h2>⏪ Como o verbo recua</h2></div>
+  <table>
+    <thead><tr><th>Discurso direto</th><th>Vira (reported)</th><th>Exemplo relatado</th></tr></thead>
+    <tbody>
+      <tr><td>simple present</td><td><b>simple past</b></td><td><span class="en">She said she <b>went</b> to school every day.</span></td></tr>
+      <tr><td>present progressive</td><td><b>past progressive</b></td><td><span class="en">He said he <b>wasn't feeling</b> well.</span></td></tr>
+      <tr><td>simple past</td><td><b>past perfect</b></td><td><span class="en">He said he<b>'d read</b> that book the previous year.</span></td></tr>
+      <tr><td>present perfect</td><td><b>past perfect</b></td><td><span class="en">She said she<b>'d never been</b> to Bristol.</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec"><span class="pill">Reported Speech</span><h2>⚙️ Modais e futuro</h2></div>
+  <table>
+    <thead><tr><th>Direto</th><th>Reported</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>will</td><td><b>would</b></td><td><span class="en">She said she<b>'d</b> be late.</span></td></tr>
+      <tr><td>am/is/are going to</td><td><b>was/were going to</b></td><td><span class="en">He said he <b>was going to</b> walk home.</span></td></tr>
+      <tr><td>can</td><td><b>could</b></td><td><span class="en">She said she <b>could</b> buy the drinks later.</span></td></tr>
+      <tr><td>have to</td><td><b>had to</b></td><td><span class="en">He said he <b>had to</b> finish his homework first.</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec"><span class="pill">Reported Speech</span><h2>👥 Pronomes, possessivos e reporting verbs</h2></div>
+  <table>
+    <thead><tr><th>Muda de…</th><th>…para</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td><b>he / she</b></td></tr>
+      <tr><td>we</td><td><b>they</b></td></tr>
+      <tr><td>my</td><td><b>his / her</b></td></tr>
+      <tr><td>our</td><td><b>their</b></td></tr>
+      <tr><td>me</td><td><b>him / her</b></td></tr>
+    </tbody>
+  </table>
+  <div class="postit">🗣️ <b>Reporting verbs:</b> said (disse) · told (disse/contou — pede a pessoa) · asked (perguntou) · complained (reclamou) · suggested (sugeriu) · promised (prometeu) · admitted (admitiu).</div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> <b>tell</b> precisa da pessoa (told <b>me</b>), <b>say</b> não (said that). Nunca "she said me".</div>
+
+  <div class="sec"><span class="pill">Time Expressions</span><h2>🗓️ As palavras de tempo mudam</h2></div>
+  <table>
+    <thead><tr><th>Direto</th><th>Reported</th></tr></thead>
+    <tbody>
+      <tr><td>today</td><td><b>that day</b></td></tr>
+      <tr><td>tomorrow</td><td><b>the day after / the following day</b></td></tr>
+      <tr><td>yesterday</td><td><b>the day before / the previous day</b></td></tr>
+      <tr><td>next week</td><td><b>the week after / the following week</b></td></tr>
+      <tr><td>last week</td><td><b>the week before / the previous week</b></td></tr>
+      <tr><td>ten years ago</td><td><b>ten years before</b></td></tr>
+      <tr><td>this year</td><td><b>that year</b></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:8px"><span class="en" style="color:#bff3d6">She said she wanted to go shopping the following week.</span> <button class="say" onclick="speak(this.getAttribute('data-say'))" data-say="She said she wanted to go shopping the following week." aria-label="Ouvir">🔊</button></p>
+
+  <div class="sec"><span class="pill">Reported Questions</span><h2>❓ Perguntas no discurso indireto</h2></div>
+  <table>
+    <thead><tr><th>Tipo</th><th>Como relatar</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td><b>Wh- (where, what, when…)</b></td><td>muda a ordem (sujeito antes do verbo) e <b>tira do/does/did</b></td><td><span class="en">Julia asked Kevin <b>where he lived</b>.</span></td></tr>
+      <tr><td><b>Sim / não</b></td><td>usa <b>if</b> ou <b>whether</b> (também sem do/does/did)</td><td><span class="en">He asked me <b>if/whether</b> I could lend him that book.</span></td></tr>
+    </tbody>
+  </table>
+  <div class="peg">⚠️ <b>Pegadinha:</b> em pergunta relatada <b>não</b> se usa do/does/did e <b>não</b> fica ponto de interrogação. Errado: "She asked where <b>did</b> he live". Certo: "She asked where he <b>lived</b>".</div>
+
+  <div class="sec"><span class="pill">Glossário</span><h2>📚 Palavras-chave</h2></div>
+  <div class="gloss">
+    <div><b>reported speech</b> — discurso indireto: relatar o que alguém disse, sem aspas.</div>
+    <div><b>reporting verb</b> — verbo de relato (say, tell, ask, complain…).</div>
+    <div><b>to recuar (backshift)</b> — o verbo volta um tempo (present→past).</div>
+    <div><b>prototype</b> — protótipo, primeiro modelo de teste de um produto.</div>
+    <div><b>gadget</b> — aparelho/engenhoca.</div>
+    <div><b>market research</b> — pesquisa de mercado.</div>
+    <div><b>to manufacture</b> — fabricar.</div>
+    <div><b>to improve</b> — melhorar.</div>
+    <div><b>whether</b> — "se" (usado em perguntas de sim/não relatadas), igual a "if" aqui.</div>
+    <div><b>to complain</b> — reclamar.</div>
+    <div><b>to admit</b> — admitir.</div>
+    <div><b>to suggest</b> — sugerir.</div>
+  </div>
+
+  <div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🛠️</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+
+<script>
+/* ====== ÁUDIO ====== */
+function speak(t){ if(!('speechSynthesis' in window))return; var u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=1; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+
+/* ====== TRILHA COM CADEADOS ====== */
+var KIT='ideia_realidade';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(6px)';
+  return false;
+}
+
+/* ====== CONTEÚDO (vocabulário e passos) ====== */
+var VOCAB=[
+ {t:"research an idea",tr:"pesquisar uma ideia"},
+ {t:"develop a concept",tr:"desenvolver um conceito"},
+ {t:"invent characters",tr:"inventar personagens"},
+ {t:"design a prototype",tr:"desenhar/projetar um protótipo"},
+ {t:"test out the product",tr:"testar o produto"},
+ {t:"improve the design",tr:"melhorar o design"},
+ {t:"solve any problems",tr:"resolver os problemas"},
+ {t:"manufacture the gadget",tr:"fabricar o aparelho"},
+ {t:"develop the product",tr:"desenvolver o produto"},
+ {t:"give a demonstration",tr:"fazer uma demonstração"},
+ {t:"do market research",tr:"fazer pesquisa de mercado"},
+ {t:"analyze the results",tr:"analisar os resultados"}
+];
+var STEPS=[
+ {t:"research an idea",tr:"pesquisar uma ideia"},
+ {t:"develop a concept",tr:"desenvolver um conceito"},
+ {t:"design a prototype",tr:"projetar um protótipo"},
+ {t:"test out the product",tr:"testar o produto"},
+ {t:"improve the design",tr:"melhorar o design"},
+ {t:"solve any problems",tr:"resolver os problemas"},
+ {t:"manufacture the gadget",tr:"fabricar o aparelho"},
+ {t:"develop the product",tr:"desenvolver o produto"}
+];
+function escAttr(s){ return s.replace(/"/g,'&quot;'); }
+function renderConteudo(){
+  var vc=document.getElementById('vcards'); var h='';
+  VOCAB.forEach(function(v){ h+='<div class="vcard"><div class="en">'+v.t+'<button class="say" onclick="speak(this.getAttribute(\'data-say\'))" data-say="'+escAttr(v.t)+'" aria-label="Ouvir">🔊</button></div><div class="tr">'+v.tr+'</div></div>'; });
+  vc.innerHTML=h;
+  var st=document.getElementById('steps'); var sh='';
+  STEPS.forEach(function(s,i){ sh+='<div class="step"><div class="n">'+(i+1)+'</div><div><div class="en">'+s.t+' <button class="say" onclick="speak(this.getAttribute(\'data-say\'))" data-say="'+escAttr(s.t)+'" aria-label="Ouvir">🔊</button></div><div class="tr">'+s.tr+'</div></div></div>'; });
+  st.innerHTML=sh;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } document.getElementById('salvo').textContent='📏 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'%'; }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare o Simulado valendo, como se fosse a prova.':'Trilha liberada pelos pais.'; b.disabled=true; b.textContent=estado.concluido?'✅ Resumo concluído':'✅ Li o resumo até o fim'; a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_prancheta-de-invencoes.json'; a.click(); }
+
+if(checarTrava()){ renderConteudo(); salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(medirRolagem,300); } else { marcarNav(); }
+</script>
+</body>
+</html>
